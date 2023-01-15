@@ -27,7 +27,13 @@ d3.json(url).then(function(data) {
     }); // drop down list is now populated
 
     // filtered data for 940 function
+    let first_sel = names[0];
+    console.log(first_sel)
 
+    // build initial charts
+    //buildmetedata(first_sel);
+    //buildbar(first_sel);
+    //buildbub(first_sel);
 
 
   // 
@@ -37,8 +43,8 @@ d3.json(url).then(function(data) {
 
 function optionChanged(selected_id){
     console.log(selected_id)
-    console.log(metadata[0]['id'])
-    var index_num;
+    //console.log(metadata[0]['id'])
+    //var index_num;
 
     //loop thourough metedata  -> get the index number for the ID that was selected
     metadata.forEach(sample => {
@@ -48,13 +54,18 @@ function optionChanged(selected_id){
             d3.selectAll('p').remove();
             d3.select('#sample-metadata').selectAll('p').data(demographics).enter().append('p').text(d=>{
                 return `${d[0]}: ${d[1]}`;
-            });
 
-            let sel_sample_values = sample.sample_values;
-            let sel_otu_id = sample.otu_ids;
-            let sel_otu_labels = sample.otu_labels;
+              });
+
+
             //// use these variables to build my chart. Slice them to build the bar charts
+            let sel_sample_values = samples.sample_values;
+            let sel_otu_id = samples.otu_ids;
+            let sel_otu_labels = samples.otu_labels;
 
+            console.log(sel_sample_values);
+            console.log(sel_otu_id);
+            console.log(sel_otu_labels);
         }
     });
 
@@ -65,6 +76,46 @@ function optionChanged(selected_id){
 
 
 }
+
+
+
+
+
+// function buildbar(selected_id){
+//   let otu_ids = samples.otu_ids;
+//   let otu_labels = samples.otu_labels;
+//   let sample_values = samples.sample_values;
+//   console.log(otu_ids)
+
+// }
+
+
+// function buildbub(selected_id){
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
